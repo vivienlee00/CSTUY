@@ -4,6 +4,7 @@ import java.awt.*;
 
 Capture video;
 OpenCV opencv;
+int cycle;
 
 void setup() {
   size(640, 480);
@@ -31,14 +32,26 @@ void draw() {
 
   for (int i = 0; i < faces.length; i++) {
     println(faces[i].x + "," + faces[i].y);
-    
+
     PImage img;
-    img = loadImage("heart.png");
-    img.resize(faces[i].width, faces[i].height);
-    image(img, faces[i].x, faces[i].y); 
+    if (cycle % 2 == 0) {
+      img = loadImage("heart.png");
+      img.resize(faces[i].width, faces[i].height);
+      image(img, faces[i].x, faces[i].y);
+    }
+    
+    if (cycle % 2 == 1) {
+      img = loadImage("googly.png");
+      img.resize(faces[i].width, faces[i].height);
+      image(img, faces[i].x, faces[i].y);
+    }
   }
 }
 
 void captureEvent(Capture c) {
   c.read();
+}
+
+void keyPressed() {
+  cycle++;
 }
