@@ -55,3 +55,11 @@ void captureEvent(Capture c) {
 void keyPressed() {
   cycle++;
 }
+
+void mousePressed() {
+  try {
+    saveFrame("screenshot.png");
+  } 
+  catch (Exception e) {
+  }
+}
