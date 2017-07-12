@@ -16,24 +16,24 @@ int ballxdir = 2;
 
 
 void setup() {
-  size(640, 480);
+  size(852, 480);
   video = new Capture(this, 640/2, 480/2);
   opencv = new OpenCV(this, 640/2, 480/2);
   opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);  
 
   // opencv.loadCascade(OpenCV.CASCADE_MOUTH);  
-
+  PImage img;
+  img = loadImage("snow.jpg");
+  background(img);
 
   video.start();
 }
 
 void draw() {
   scale(2);
-  
-  PImage img;
-  img = loadImage("snow.jpg");
-  background(img);
-  
+  opencv.loadImage(video);
+
+
   noFill();
   stroke(0, 0, 255);
   strokeWeight(3);
@@ -41,13 +41,16 @@ void draw() {
 
   for (int i = 0; i < faces.length; i++) {
 
-    img = loadImage("polarbear.png");
-    img.resize(faces[i].width, img.height/faces[i].width);
-    image(img, faces[i].x, faces[i].y+100);
+    /*   img = loadImage("polarbear.png");
+     img.resize(43, 34);
+     image(img, faces[i].x, faces[i].y+100);
+     */
     bearx = faces[i].x;
-    beary = faces[i].y+100;
+    beary = faces[i].y;
     bearwidth = faces[i].width;
-    bearheight = img.height/faces[i].width;
+    bearheight = faces[i].width;
+    fill(0);
+    
   }
 }
 
