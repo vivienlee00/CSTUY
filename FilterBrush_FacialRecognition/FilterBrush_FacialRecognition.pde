@@ -4,6 +4,7 @@ import java.awt.*;
 
 Capture video;
 OpenCV opencv;
+int counter = 0;
 
 float[][] blur = {
   {1.0/16.0, 2.0/16.0, 1.0/16.0}, 
@@ -33,6 +34,7 @@ void draw() {
   PImage original = video;
   PImage newImage = video;
   //image(video, 0, 0 );
+  counter++;
 
   noFill();
   stroke(0, 255, 0);
@@ -59,7 +61,7 @@ void draw() {
    }*/
 
 
-  if (keyPressed) {
+  if (keyPressed && counter%3 == 1) {
     coords.get(0).append(mouseX);
     coords.get(1).append(mouseY);
   }
@@ -91,8 +93,8 @@ void processImage(PImage destination, PImage source, int x, int y, float[][] ker
   //loop through all pixels
   //skip the border!
   try {
-    for (int row = x/2 - 3; row < x/2 + 3; row++) {
-      for (int col = y/2 - 3; col < y/2 + 3; col++) {
+    for (int row = x/2 - 10; row < x/2 + 10; row++) {
+      for (int col = y/2 - 10; col < y/2 + 10; col++) {
         //store the sums of RED/GREEN/BLUE in an array
         float[]sum = {0, 0, 0};
 
