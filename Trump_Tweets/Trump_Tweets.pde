@@ -17,11 +17,11 @@ List<Status> statuses;
 String[] lines;
 ArrayList<String> individualwords = new ArrayList<String>();
 String post;
-String ansss;
+String ansss = "";
 float counter = 230;
 
 void setup() {
-
+  size(1500, 100);
   /*Date today = new Date();
    DateFormat df = new SimpleDateFormat("yyyyMMdd"); 
    endDate = df.format(today); 
@@ -65,6 +65,10 @@ void setup() {
 
 void draw() {
   counter += 1;
+  background(255);
+  textSize(30);
+  fill(0);
+  text("press any key to post a tweet", 10, 30);
   if (counter>=240) {
     int charcount = 0;
     String ans = "";
@@ -78,9 +82,10 @@ void draw() {
     }
     ansss=ans;
     ans += '\n';
-    println(ans);
     counter = 0;
   }
+  textSize(20);
+  text(ansss, 10, 60);
 }
 
 void loadFile(String[] lines) {
