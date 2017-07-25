@@ -22,7 +22,11 @@ void draw() {
     last = hm.get(last).get((int)random(hm.get(last).size()));
     delay(1000);
     println(last);
-    out.playNote(0, last.substring(0,1));
+    if (last.contains(".")) {
+      out.playNote(0, last.substring(0, 1));
+    } else {
+      out.playNote(0, last);
+    }
   }
   noLoop();
 }
