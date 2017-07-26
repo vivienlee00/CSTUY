@@ -21,7 +21,7 @@ String ansss = "";
 float counter = 230;
 
 void setup() {
-  size(887, 319);
+  size(1500, 100);
   /*Date today = new Date();
    DateFormat df = new SimpleDateFormat("yyyyMMdd"); 
    endDate = df.format(today); 
@@ -64,54 +64,28 @@ void setup() {
 
 
 void draw() {
-  PImage img;
-  img = loadImage("twitterbg.PNG");
-  background(img);
+  counter += 1;
+  background(255);
+  textSize(30);
   fill(0);
-  if (mousePressed) {
-    if (mouseX > 620 && mouseX<720 && mouseY>240 && mouseY<295) {
-      int charcount = 0;
-      String ans = "";
-      String last = ".";
-      try {
-        last = individualwords.get((int)random(individualwords.size()));
-      }
-      catch(NullPointerException e) {
-      }
-      ans += last;  
-      while (!last.contains(".") && charcount < 120) {
-        ans += " ";
-        try {
-          last = hm.get(last).get((int)random(hm.get(last).size()));
-        }
-        catch(NullPointerException e) {
-        }
-        ans += last;
-        charcount += last.length() + 1;
-      }
-      ansss=ans;
-      ans += '\n';
-      mousePressed = false;
+  text("press any key to post a tweet", 10, 30);
+  if (counter>=240) {
+    int charcount = 0;
+    String ans = "";
+    String last = individualwords.get((int)random(individualwords.size()));
+    ans += last;  
+    while (!last.contains(".") && charcount < 120) {
+      ans += " ";
+      last = hm.get(last).get((int)random(hm.get(last).size()));
+      ans += last;
+      charcount += last.length() + 1;
     }
-    if(mouseX>755&&mouseX<860&&mouseY>240&&mouseY<290){
-      poster();
-    }
+    ansss=ans;
+    ans += '\n';
+    counter = 0;
   }
   textSize(20);
-  if (ansss.length() < 70) {
-    text(ansss, 40, 140);
-  } else {
-    String ln1, ln2;
-    int sep = ansss.substring(70).indexOf(" ") + 70;
-    if (sep!=-1 && sep!= 69) {
-      ln1 = ansss.substring(0, sep);
-      ln2 = ansss.substring(sep);
-      text(ln1, 40, 140);
-      text(ln2, 35, 170);
-    } else {
-      text(ansss, 40, 140);
-    }
-  }
+  text(ansss, 10, 60);
 }
 
 void loadFile(String[] lines) {
@@ -145,7 +119,7 @@ void getDTArticles() {
  }
  */
 
-void poster() {
+void keyPressed() {
   post = ansss;
   try 
   {
@@ -165,5 +139,5 @@ void poster() {
   catch (TwitterException te) {
     te.printStackTrace();
   }
-  mousePressed = false;
+  keyPressed = false;
 }
