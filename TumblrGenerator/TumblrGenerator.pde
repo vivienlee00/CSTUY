@@ -1,8 +1,7 @@
 import org.json.*;
 import java.util.*;
 import java.io.*;
-import twitter4j.*;
-import twitter4j.conf.*;
+import com.tumblr.jumblr.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -75,6 +75,9 @@ void draw() {
       String last = ".";
       try {
         last = individualwords.get((int)random(individualwords.size()));
+        while (last.contains(".")) {
+          last = individualwords.get((int)random(individualwords.size()));
+        }
       }
       catch(NullPointerException e) {
       }
@@ -93,7 +96,7 @@ void draw() {
       ans += '\n';
       mousePressed = false;
     }
-    if(mouseX>755&&mouseX<860&&mouseY>240&&mouseY<290){
+    if (mouseX>755&&mouseX<860&&mouseY>240&&mouseY<290) {
       poster();
     }
   }
